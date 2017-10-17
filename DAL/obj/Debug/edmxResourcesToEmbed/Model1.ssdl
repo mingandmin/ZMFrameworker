@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZouminModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="COM_User">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tel" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Department" Type="nvarchar" MaxLength="50" />
+    <Property Name="IP" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PHA_Accounts">
+    <Key>
+      <PropertyRef Name="PhaCode" />
+      <PropertyRef Name="OrginID" />
+    </Key>
+    <Property Name="PhaCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OrginID" Type="int" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="Stock" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="InWarehousePrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="RetailPrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="WholesalePrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="InWarehouseSum" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="RetailSum" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="WholesaleSum" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="PHA_AdjustPrice">
+    <Key>
+      <PropertyRef Name="APCode" />
+    </Key>
+    <Property Name="APCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="APWay" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApDate" Type="datetime" />
+    <Property Name="APNum" Type="varchar" MaxLength="50" />
+    <Property Name="ExecDate" Type="datetime" />
+    <Property Name="ExecNo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PHA_AdjustPriceDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="APCode" Type="varchar" MaxLength="50" />
+    <Property Name="APWay" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhaCode" Type="varchar" MaxLength="50" />
+    <Property Name="OrginID" Type="int" />
+    <Property Name="NewRetailPrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="OldRetailPrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="NewWholesalePrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="OldWholesalePrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="RetailFloat" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="WholesaleFloat" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="PHA_BaseInfo">
+    <Key>
+      <PropertyRef Name="PhaCode" />
+    </Key>
+    <Property Name="PhaCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CommonName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Spec" Type="nvarchar" MaxLength="50" />
+    <Property Name="Unit" Type="varchar" MaxLength="50" />
+    <Property Name="DosageForm" Type="int" />
+    <Property Name="Repo" Type="varchar" MaxLength="50" />
+    <Property Name="IsSpecial" Type="int" />
+    <Property Name="DispenseWay" Type="int" />
+    <Property Name="PinyinCode" Type="varchar" MaxLength="50" />
+    <Property Name="WubiCode" Type="varchar" MaxLength="50" />
+    <Property Name="IsAntibiotic" Type="int" />
+    <Property Name="IsEmergency" Type="int" />
+    <Property Name="IsValid" Type="int" />
+    <Property Name="MinUnit" Type="varchar" MaxLength="50" />
+    <Property Name="PharmacySpec" Type="nvarchar" MaxLength="50" />
+    <Property Name="PharmacyUnit" Type="nvarchar" MaxLength="50" />
+    <Property Name="PharmacyPack" Type="nvarchar" MaxLength="50" />
+    <Property Name="MinPack" Type="nvarchar" MaxLength="50" />
+    <Property Name="WardSpec" Type="nvarchar" MaxLength="50" />
+    <Property Name="WardUnit" Type="nvarchar" MaxLength="50" />
+    <Property Name="WardPack" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhaAttr" Type="int" />
+    <Property Name="StorageCondition" Type="int" />
+  </EntityType>
+  <EntityType Name="PHA_DispenseWay">
+    <Key>
+      <PropertyRef Name="DispenseWayID" />
+    </Key>
+    <Property Name="DispenseWayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DispenseWayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PinyinCode" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PHA_DosageForm">
+    <Key>
+      <PropertyRef Name="DosageID" />
+    </Key>
+    <Property Name="DosageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DosageName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PinyinCode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PHA_Orgin">
+    <Key>
+      <PropertyRef Name="OrginID" />
+    </Key>
+    <Property Name="OrginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrginName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PinyinCode" Type="varchar" MaxLength="50" />
+    <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PHA_PhaAttr">
+    <Key>
+      <PropertyRef Name="PhaAttrID" />
+    </Key>
+    <Property Name="PhaAttrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhaAttrName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PHA_Repository">
+    <Key>
+      <PropertyRef Name="RepoID" />
+    </Key>
+    <Property Name="RepoID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RepoName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhaNum" Type="int" />
+    <Property Name="IsValid" Type="int" />
+  </EntityType>
+  <EntityType Name="PHA_StockDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhaCode" Type="varchar" MaxLength="50" />
+    <Property Name="OrginID" Type="int" />
+    <Property Name="LotNumber" Type="varchar" MaxLength="50" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="Property" Type="int" />
+    <Property Name="InWarehousePrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="WholesalePrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="RetailPrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="RetailSum" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="WholesaleSum" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="InWarehouseSum" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="PHA_StorageCondition">
+    <Key>
+      <PropertyRef Name="StorageConditionID" />
+    </Key>
+    <Property Name="StorageConditionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageConditionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PinyinCode" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PSS_ExWarehouse">
+    <Key>
+      <PropertyRef Name="EWID" />
+    </Key>
+    <Property Name="EWID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EWWay" Type="int" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="EWDate" Type="datetime" />
+    <Property Name="OperateNo" Type="varchar" MaxLength="50" />
+    <Property Name="OperateDate" Type="datetime" />
+    <Property Name="IsEW" Type="int" />
+  </EntityType>
+  <EntityType Name="PSS_ExWarehouseDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EWID" Type="varchar" MaxLength="50" />
+    <Property Name="EWWay" Type="int" />
+    <Property Name="PhaCode" Type="varchar" MaxLength="50" />
+    <Property Name="OrginID" Type="int" />
+    <Property Name="ExWarehouseNum" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="PSS_ExWarehouseMode">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Way" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PSS_InWarehouse">
+    <Key>
+      <PropertyRef Name="IWID" />
+    </Key>
+    <Property Name="IWID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IWWay" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="Receipts" Type="int" />
+    <Property Name="IWRemark" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsIW" Type="int" />
+    <Property Name="IWDate" Type="datetime" />
+    <Property Name="OperateNo" Type="varchar" MaxLength="50" />
+    <Property Name="OperateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PSS_InWarehouseDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IWID" Type="varchar" MaxLength="50" />
+    <Property Name="IWWay" Type="int" />
+    <Property Name="PhaCode" Type="varchar" MaxLength="50" />
+    <Property Name="OrginID" Type="int" />
+    <Property Name="PhaNo" Type="varchar" MaxLength="50" />
+    <Property Name="PhaExpiry" Type="datetime" />
+    <Property Name="InWarehouseCount" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="InWarehousePrice" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="InWarehouseSum" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="PSS_InWarehouseMode">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="10" />
+    <Property Name="PriceWay" Type="nchar" MaxLength="10" />
+    <Property Name="PriceFormula" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="PSS_PurchaseCompany">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+    <Property Name="PinyinCode" Type="varchar" MaxLength="50" />
+    <Property Name="Bank" Type="varchar" MaxLength="50" />
+    <Property Name="BankNo" Type="varchar" MaxLength="50" />
+    <Property Name="Contact" Type="varchar" MaxLength="50" />
+    <Property Name="Tel" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PSS_PurchasePlan">
+    <Key>
+      <PropertyRef Name="PurchaseNo" />
+    </Key>
+    <Property Name="PurchaseNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PurchaseDate" Type="datetime" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="OperateNo" Type="varchar" MaxLength="50" />
+    <Property Name="OperateDate" Type="datetime" />
+    <Property Name="PurchaseStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="PSS_PurchasePlanDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PurchaseNo" Type="varchar" MaxLength="50" />
+    <Property Name="PhaCode" Type="varchar" MaxLength="50" />
+    <Property Name="OrginID" Type="int" />
+    <Property Name="PurchaseNum" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <Association Name="FK_PHA_Accounts_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="1" />
+    <End Role="PHA_Accounts" Type="Self.PHA_Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_Orgin">
+        <PropertyRef Name="OrginID" />
+      </Principal>
+      <Dependent Role="PHA_Accounts">
+        <PropertyRef Name="OrginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_Accounts_PSS_PurchaseCompany">
+    <End Role="PSS_PurchaseCompany" Type="Self.PSS_PurchaseCompany" Multiplicity="0..1" />
+    <End Role="PHA_Accounts" Type="Self.PHA_Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSS_PurchaseCompany">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="PHA_Accounts">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_AdjustPriceDetail_PHA_AdjustPrice">
+    <End Role="PHA_AdjustPrice" Type="Self.PHA_AdjustPrice" Multiplicity="0..1" />
+    <End Role="PHA_AdjustPriceDetail" Type="Self.PHA_AdjustPriceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_AdjustPrice">
+        <PropertyRef Name="APCode" />
+      </Principal>
+      <Dependent Role="PHA_AdjustPriceDetail">
+        <PropertyRef Name="APCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_AdjustPriceDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PHA_AdjustPriceDetail" Type="Self.PHA_AdjustPriceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_BaseInfo">
+        <PropertyRef Name="PhaCode" />
+      </Principal>
+      <Dependent Role="PHA_AdjustPriceDetail">
+        <PropertyRef Name="PhaCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_AdjustPriceDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PHA_AdjustPriceDetail" Type="Self.PHA_AdjustPriceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_Orgin">
+        <PropertyRef Name="OrginID" />
+      </Principal>
+      <Dependent Role="PHA_AdjustPriceDetail">
+        <PropertyRef Name="OrginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_DispenseWay">
+    <End Role="PHA_DispenseWay" Type="Self.PHA_DispenseWay" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_DispenseWay">
+        <PropertyRef Name="DispenseWayID" />
+      </Principal>
+      <Dependent Role="PHA_BaseInfo">
+        <PropertyRef Name="DispenseWay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_DosageForm">
+    <End Role="PHA_DosageForm" Type="Self.PHA_DosageForm" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_DosageForm">
+        <PropertyRef Name="DosageID" />
+      </Principal>
+      <Dependent Role="PHA_BaseInfo">
+        <PropertyRef Name="DosageForm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_PhaAttr">
+    <End Role="PHA_PhaAttr" Type="Self.PHA_PhaAttr" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_PhaAttr">
+        <PropertyRef Name="PhaAttrID" />
+      </Principal>
+      <Dependent Role="PHA_BaseInfo">
+        <PropertyRef Name="PhaAttr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_Repository">
+    <End Role="PHA_Repository" Type="Self.PHA_Repository" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_Repository">
+        <PropertyRef Name="RepoID" />
+      </Principal>
+      <Dependent Role="PHA_BaseInfo">
+        <PropertyRef Name="Repo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_StorageCondition">
+    <End Role="PHA_StorageCondition" Type="Self.PHA_StorageCondition" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_StorageCondition">
+        <PropertyRef Name="StorageConditionID" />
+      </Principal>
+      <Dependent Role="PHA_BaseInfo">
+        <PropertyRef Name="StorageCondition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_StockDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PHA_StockDetail" Type="Self.PHA_StockDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_BaseInfo">
+        <PropertyRef Name="PhaCode" />
+      </Principal>
+      <Dependent Role="PHA_StockDetail">
+        <PropertyRef Name="PhaCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_StockDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PHA_StockDetail" Type="Self.PHA_StockDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_Orgin">
+        <PropertyRef Name="OrginID" />
+      </Principal>
+      <Dependent Role="PHA_StockDetail">
+        <PropertyRef Name="OrginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_ExWarehouse_PSS_ExWarehouseMode">
+    <End Role="PSS_ExWarehouseMode" Type="Self.PSS_ExWarehouseMode" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouse" Type="Self.PSS_ExWarehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSS_ExWarehouseMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PSS_ExWarehouse">
+        <PropertyRef Name="EWWay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_ExWarehouseDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouseDetail" Type="Self.PSS_ExWarehouseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_BaseInfo">
+        <PropertyRef Name="PhaCode" />
+      </Principal>
+      <Dependent Role="PSS_ExWarehouseDetail">
+        <PropertyRef Name="PhaCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_ExWarehouseDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouseDetail" Type="Self.PSS_ExWarehouseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_Orgin">
+        <PropertyRef Name="OrginID" />
+      </Principal>
+      <Dependent Role="PSS_ExWarehouseDetail">
+        <PropertyRef Name="OrginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouse">
+    <End Role="PSS_ExWarehouse" Type="Self.PSS_ExWarehouse" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouseDetail" Type="Self.PSS_ExWarehouseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSS_ExWarehouse">
+        <PropertyRef Name="EWID" />
+      </Principal>
+      <Dependent Role="PSS_ExWarehouseDetail">
+        <PropertyRef Name="EWID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode">
+    <End Role="PSS_ExWarehouseMode" Type="Self.PSS_ExWarehouseMode" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouseDetail" Type="Self.PSS_ExWarehouseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSS_ExWarehouseMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PSS_ExWarehouseDetail">
+        <PropertyRef Name="EWWay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_InWarehouse_PSS_InWarehouse">
+    <End Role="PSS_InWarehouseMode" Type="Self.PSS_InWarehouseMode" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouse" Type="Self.PSS_InWarehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSS_InWarehouseMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PSS_InWarehouse">
+        <PropertyRef Name="IWWay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_InWarehouse_PSS_PurchaseCompany">
+    <End Role="PSS_PurchaseCompany" Type="Self.PSS_PurchaseCompany" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouse" Type="Self.PSS_InWarehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSS_PurchaseCompany">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="PSS_InWarehouse">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_InWarehouseDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouseDetail" Type="Self.PSS_InWarehouseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_BaseInfo">
+        <PropertyRef Name="PhaCode" />
+      </Principal>
+      <Dependent Role="PSS_InWarehouseDetail">
+        <PropertyRef Name="PhaCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_InWarehouseDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouseDetail" Type="Self.PSS_InWarehouseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_Orgin">
+        <PropertyRef Name="OrginID" />
+      </Principal>
+      <Dependent Role="PSS_InWarehouseDetail">
+        <PropertyRef Name="OrginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_InWarehouseDetail_PSS_InWarehouse">
+    <End Role="PSS_InWarehouse" Type="Self.PSS_InWarehouse" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouseDetail" Type="Self.PSS_InWarehouseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSS_InWarehouse">
+        <PropertyRef Name="IWID" />
+      </Principal>
+      <Dependent Role="PSS_InWarehouseDetail">
+        <PropertyRef Name="IWID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail">
+    <End Role="PSS_InWarehouseMode" Type="Self.PSS_InWarehouseMode" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouseDetail" Type="Self.PSS_InWarehouseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSS_InWarehouseMode">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PSS_InWarehouseDetail">
+        <PropertyRef Name="IWWay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_PurchasePlanDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PSS_PurchasePlanDetail" Type="Self.PSS_PurchasePlanDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_BaseInfo">
+        <PropertyRef Name="PhaCode" />
+      </Principal>
+      <Dependent Role="PSS_PurchasePlanDetail">
+        <PropertyRef Name="PhaCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSS_PurchasePlanDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PSS_PurchasePlanDetail" Type="Self.PSS_PurchasePlanDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_Orgin">
+        <PropertyRef Name="OrginID" />
+      </Principal>
+      <Dependent Role="PSS_PurchasePlanDetail">
+        <PropertyRef Name="OrginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ZouminModelStoreContainer">
+    <EntitySet Name="COM_User" EntityType="Self.COM_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_Accounts" EntityType="Self.PHA_Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_AdjustPrice" EntityType="Self.PHA_AdjustPrice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_AdjustPriceDetail" EntityType="Self.PHA_AdjustPriceDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_BaseInfo" EntityType="Self.PHA_BaseInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_DispenseWay" EntityType="Self.PHA_DispenseWay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_DosageForm" EntityType="Self.PHA_DosageForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_Orgin" EntityType="Self.PHA_Orgin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_PhaAttr" EntityType="Self.PHA_PhaAttr" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_Repository" EntityType="Self.PHA_Repository" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_StockDetail" EntityType="Self.PHA_StockDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHA_StorageCondition" EntityType="Self.PHA_StorageCondition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSS_ExWarehouse" EntityType="Self.PSS_ExWarehouse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSS_ExWarehouseDetail" EntityType="Self.PSS_ExWarehouseDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSS_ExWarehouseMode" EntityType="Self.PSS_ExWarehouseMode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSS_InWarehouse" EntityType="Self.PSS_InWarehouse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSS_InWarehouseDetail" EntityType="Self.PSS_InWarehouseDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSS_InWarehouseMode" EntityType="Self.PSS_InWarehouseMode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSS_PurchaseCompany" EntityType="Self.PSS_PurchaseCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSS_PurchasePlan" EntityType="Self.PSS_PurchasePlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSS_PurchasePlanDetail" EntityType="Self.PSS_PurchasePlanDetail" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PHA_Accounts_PHA_Orgin" Association="Self.FK_PHA_Accounts_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PHA_Accounts" EntitySet="PHA_Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_Accounts_PSS_PurchaseCompany" Association="Self.FK_PHA_Accounts_PSS_PurchaseCompany">
+      <End Role="PSS_PurchaseCompany" EntitySet="PSS_PurchaseCompany" />
+      <End Role="PHA_Accounts" EntitySet="PHA_Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_AdjustPriceDetail_PHA_AdjustPrice" Association="Self.FK_PHA_AdjustPriceDetail_PHA_AdjustPrice">
+      <End Role="PHA_AdjustPrice" EntitySet="PHA_AdjustPrice" />
+      <End Role="PHA_AdjustPriceDetail" EntitySet="PHA_AdjustPriceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_AdjustPriceDetail_PHA_BaseInfo" Association="Self.FK_PHA_AdjustPriceDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PHA_AdjustPriceDetail" EntitySet="PHA_AdjustPriceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_AdjustPriceDetail_PHA_Orgin" Association="Self.FK_PHA_AdjustPriceDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PHA_AdjustPriceDetail" EntitySet="PHA_AdjustPriceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_DispenseWay" Association="Self.FK_PHA_BaseInfo_PHA_DispenseWay">
+      <End Role="PHA_DispenseWay" EntitySet="PHA_DispenseWay" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_DosageForm" Association="Self.FK_PHA_BaseInfo_PHA_DosageForm">
+      <End Role="PHA_DosageForm" EntitySet="PHA_DosageForm" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_PhaAttr" Association="Self.FK_PHA_BaseInfo_PHA_PhaAttr">
+      <End Role="PHA_PhaAttr" EntitySet="PHA_PhaAttr" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_Repository" Association="Self.FK_PHA_BaseInfo_PHA_Repository">
+      <End Role="PHA_Repository" EntitySet="PHA_Repository" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_StorageCondition" Association="Self.FK_PHA_BaseInfo_PHA_StorageCondition">
+      <End Role="PHA_StorageCondition" EntitySet="PHA_StorageCondition" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_StockDetail_PHA_BaseInfo" Association="Self.FK_PHA_StockDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PHA_StockDetail" EntitySet="PHA_StockDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_StockDetail_PHA_Orgin" Association="Self.FK_PHA_StockDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PHA_StockDetail" EntitySet="PHA_StockDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouse_PSS_ExWarehouseMode" Association="Self.FK_PSS_ExWarehouse_PSS_ExWarehouseMode">
+      <End Role="PSS_ExWarehouseMode" EntitySet="PSS_ExWarehouseMode" />
+      <End Role="PSS_ExWarehouse" EntitySet="PSS_ExWarehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouseDetail_PHA_BaseInfo" Association="Self.FK_PSS_ExWarehouseDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PSS_ExWarehouseDetail" EntitySet="PSS_ExWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouseDetail_PHA_Orgin" Association="Self.FK_PSS_ExWarehouseDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PSS_ExWarehouseDetail" EntitySet="PSS_ExWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouse" Association="Self.FK_PSS_ExWarehouseDetail_PSS_ExWarehouse">
+      <End Role="PSS_ExWarehouse" EntitySet="PSS_ExWarehouse" />
+      <End Role="PSS_ExWarehouseDetail" EntitySet="PSS_ExWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode" Association="Self.FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode">
+      <End Role="PSS_ExWarehouseMode" EntitySet="PSS_ExWarehouseMode" />
+      <End Role="PSS_ExWarehouseDetail" EntitySet="PSS_ExWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouse_PSS_InWarehouse" Association="Self.FK_PSS_InWarehouse_PSS_InWarehouse">
+      <End Role="PSS_InWarehouseMode" EntitySet="PSS_InWarehouseMode" />
+      <End Role="PSS_InWarehouse" EntitySet="PSS_InWarehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouse_PSS_PurchaseCompany" Association="Self.FK_PSS_InWarehouse_PSS_PurchaseCompany">
+      <End Role="PSS_PurchaseCompany" EntitySet="PSS_PurchaseCompany" />
+      <End Role="PSS_InWarehouse" EntitySet="PSS_InWarehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouseDetail_PHA_BaseInfo" Association="Self.FK_PSS_InWarehouseDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PSS_InWarehouseDetail" EntitySet="PSS_InWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouseDetail_PHA_Orgin" Association="Self.FK_PSS_InWarehouseDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PSS_InWarehouseDetail" EntitySet="PSS_InWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouseDetail_PSS_InWarehouse" Association="Self.FK_PSS_InWarehouseDetail_PSS_InWarehouse">
+      <End Role="PSS_InWarehouse" EntitySet="PSS_InWarehouse" />
+      <End Role="PSS_InWarehouseDetail" EntitySet="PSS_InWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail" Association="Self.FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail">
+      <End Role="PSS_InWarehouseMode" EntitySet="PSS_InWarehouseMode" />
+      <End Role="PSS_InWarehouseDetail" EntitySet="PSS_InWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_PurchasePlanDetail_PHA_BaseInfo" Association="Self.FK_PSS_PurchasePlanDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PSS_PurchasePlanDetail" EntitySet="PSS_PurchasePlanDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_PurchasePlanDetail_PHA_Orgin" Association="Self.FK_PSS_PurchasePlanDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PSS_PurchasePlanDetail" EntitySet="PSS_PurchasePlanDetail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

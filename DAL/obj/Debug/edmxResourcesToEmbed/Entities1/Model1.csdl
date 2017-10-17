@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlogAppModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BlogAppEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Blog" EntityType="BlogAppModel.Blog" />
+    <EntitySet Name="Category" EntityType="BlogAppModel.Category" />
+    <EntitySet Name="Comment" EntityType="BlogAppModel.Comment" />
+    <EntitySet Name="Role" EntityType="BlogAppModel.Role" />
+    <EntitySet Name="User" EntityType="BlogAppModel.User" />
+    <AssociationSet Name="FK_dbo_Blogs_dbo_Categories_CategoryId" Association="BlogAppModel.FK_dbo_Blogs_dbo_Categories_CategoryId">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Blogs_dbo_Users_User_Id" Association="BlogAppModel.FK_dbo_Blogs_dbo_Users_User_Id">
+      <End Role="User" EntitySet="User" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Comments_dbo_Blogs_BlogId" Association="BlogAppModel.FK_dbo_Comments_dbo_Blogs_BlogId">
+      <End Role="Blog" EntitySet="Blog" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Comments_dbo_Users_User_Id" Association="BlogAppModel.FK_dbo_Comments_dbo_Users_User_Id">
+      <End Role="User" EntitySet="User" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="RoleUser" Association="BlogAppModel.RoleUser">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="AuthorId" Type="Int32" Nullable="false" />
+    <Property Name="User_Id" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="BlogAppModel.FK_dbo_Blogs_dbo_Categories_CategoryId" FromRole="Blog" ToRole="Category" />
+    <NavigationProperty Name="User" Relationship="BlogAppModel.FK_dbo_Blogs_dbo_Users_User_Id" FromRole="Blog" ToRole="User" />
+    <NavigationProperty Name="Comment" Relationship="BlogAppModel.FK_dbo_Comments_dbo_Blogs_BlogId" FromRole="Blog" ToRole="Comment" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Blog" Relationship="BlogAppModel.FK_dbo_Blogs_dbo_Categories_CategoryId" FromRole="Category" ToRole="Blog" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Body" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BlogId" Type="Int32" />
+    <Property Name="PosterId" Type="Int32" />
+    <Property Name="User_Id" Type="Int32" />
+    <Property Name="qwe" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Blog" Relationship="BlogAppModel.FK_dbo_Comments_dbo_Blogs_BlogId" FromRole="Comment" ToRole="Blog" />
+    <NavigationProperty Name="User" Relationship="BlogAppModel.FK_dbo_Comments_dbo_Users_User_Id" FromRole="Comment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="User" Relationship="BlogAppModel.RoleUser" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Blog" Relationship="BlogAppModel.FK_dbo_Blogs_dbo_Users_User_Id" FromRole="User" ToRole="Blog" />
+    <NavigationProperty Name="Comment" Relationship="BlogAppModel.FK_dbo_Comments_dbo_Users_User_Id" FromRole="User" ToRole="Comment" />
+    <NavigationProperty Name="Role" Relationship="BlogAppModel.RoleUser" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_dbo_Blogs_dbo_Categories_CategoryId">
+    <End Role="Category" Type="BlogAppModel.Category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Blog" Type="BlogAppModel.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Blogs_dbo_Users_User_Id">
+    <End Role="User" Type="BlogAppModel.User" Multiplicity="0..1" />
+    <End Role="Blog" Type="BlogAppModel.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Comments_dbo_Blogs_BlogId">
+    <End Role="Blog" Type="BlogAppModel.Blog" Multiplicity="0..1" />
+    <End Role="Comment" Type="BlogAppModel.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="BlogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Comments_dbo_Users_User_Id">
+    <End Role="User" Type="BlogAppModel.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="BlogAppModel.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleUser">
+    <End Role="Role" Type="BlogAppModel.Role" Multiplicity="*" />
+    <End Role="User" Type="BlogAppModel.User" Multiplicity="*" />
+  </Association>
+</Schema>

@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ZouminModelStoreContainer" CdmEntityContainer="ZouminEntities">
+    <EntitySetMapping Name="COM_User">
+      <EntityTypeMapping TypeName="ZouminModel.COM_User">
+        <MappingFragment StoreEntitySet="COM_User">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_Accounts">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_Accounts">
+        <MappingFragment StoreEntitySet="PHA_Accounts">
+          <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+          <ScalarProperty Name="OrginID" ColumnName="OrginID" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="InWarehousePrice" ColumnName="InWarehousePrice" />
+          <ScalarProperty Name="RetailPrice" ColumnName="RetailPrice" />
+          <ScalarProperty Name="WholesalePrice" ColumnName="WholesalePrice" />
+          <ScalarProperty Name="InWarehouseSum" ColumnName="InWarehouseSum" />
+          <ScalarProperty Name="RetailSum" ColumnName="RetailSum" />
+          <ScalarProperty Name="WholesaleSum" ColumnName="WholesaleSum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_AdjustPrice">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_AdjustPrice">
+        <MappingFragment StoreEntitySet="PHA_AdjustPrice">
+          <ScalarProperty Name="APCode" ColumnName="APCode" />
+          <ScalarProperty Name="APWay" ColumnName="APWay" />
+          <ScalarProperty Name="ApDate" ColumnName="ApDate" />
+          <ScalarProperty Name="APNum" ColumnName="APNum" />
+          <ScalarProperty Name="ExecDate" ColumnName="ExecDate" />
+          <ScalarProperty Name="ExecNo" ColumnName="ExecNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_AdjustPriceDetail">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_AdjustPriceDetail">
+        <MappingFragment StoreEntitySet="PHA_AdjustPriceDetail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="APWay" ColumnName="APWay" />
+          <ScalarProperty Name="NewRetailPrice" ColumnName="NewRetailPrice" />
+          <ScalarProperty Name="OldRetailPrice" ColumnName="OldRetailPrice" />
+          <ScalarProperty Name="NewWholesalePrice" ColumnName="NewWholesalePrice" />
+          <ScalarProperty Name="OldWholesalePrice" ColumnName="OldWholesalePrice" />
+          <ScalarProperty Name="RetailFloat" ColumnName="RetailFloat" />
+          <ScalarProperty Name="WholesaleFloat" ColumnName="WholesaleFloat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_BaseInfo">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_BaseInfo">
+        <MappingFragment StoreEntitySet="PHA_BaseInfo">
+          <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+          <ScalarProperty Name="PhaName" ColumnName="PhaName" />
+          <ScalarProperty Name="CommonName" ColumnName="CommonName" />
+          <ScalarProperty Name="Spec" ColumnName="Spec" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
+          <ScalarProperty Name="PinyinCode" ColumnName="PinyinCode" />
+          <ScalarProperty Name="WubiCode" ColumnName="WubiCode" />
+          <ScalarProperty Name="IsAntibiotic" ColumnName="IsAntibiotic" />
+          <ScalarProperty Name="IsEmergency" ColumnName="IsEmergency" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="MinUnit" ColumnName="MinUnit" />
+          <ScalarProperty Name="PharmacySpec" ColumnName="PharmacySpec" />
+          <ScalarProperty Name="PharmacyUnit" ColumnName="PharmacyUnit" />
+          <ScalarProperty Name="PharmacyPack" ColumnName="PharmacyPack" />
+          <ScalarProperty Name="MinPack" ColumnName="MinPack" />
+          <ScalarProperty Name="WardSpec" ColumnName="WardSpec" />
+          <ScalarProperty Name="WardUnit" ColumnName="WardUnit" />
+          <ScalarProperty Name="WardPack" ColumnName="WardPack" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_DispenseWay">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_DispenseWay">
+        <MappingFragment StoreEntitySet="PHA_DispenseWay">
+          <ScalarProperty Name="DispenseWayID" ColumnName="DispenseWayID" />
+          <ScalarProperty Name="DispenseWayName" ColumnName="DispenseWayName" />
+          <ScalarProperty Name="PinyinCode" ColumnName="PinyinCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_DosageForm">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_DosageForm">
+        <MappingFragment StoreEntitySet="PHA_DosageForm">
+          <ScalarProperty Name="DosageID" ColumnName="DosageID" />
+          <ScalarProperty Name="DosageName" ColumnName="DosageName" />
+          <ScalarProperty Name="PinyinCode" ColumnName="PinyinCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_Orgin">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_Orgin">
+        <MappingFragment StoreEntitySet="PHA_Orgin">
+          <ScalarProperty Name="OrginID" ColumnName="OrginID" />
+          <ScalarProperty Name="OrginName" ColumnName="OrginName" />
+          <ScalarProperty Name="PinyinCode" ColumnName="PinyinCode" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_PhaAttr">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_PhaAttr">
+        <MappingFragment StoreEntitySet="PHA_PhaAttr">
+          <ScalarProperty Name="PhaAttrID" ColumnName="PhaAttrID" />
+          <ScalarProperty Name="PhaAttrName" ColumnName="PhaAttrName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_Repository">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_Repository">
+        <MappingFragment StoreEntitySet="PHA_Repository">
+          <ScalarProperty Name="RepoID" ColumnName="RepoID" />
+          <ScalarProperty Name="RepoName" ColumnName="RepoName" />
+          <ScalarProperty Name="PhaNum" ColumnName="PhaNum" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_StockDetail">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_StockDetail">
+        <MappingFragment StoreEntitySet="PHA_StockDetail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LotNumber" ColumnName="LotNumber" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Property" ColumnName="Property" />
+          <ScalarProperty Name="InWarehousePrice" ColumnName="InWarehousePrice" />
+          <ScalarProperty Name="WholesalePrice" ColumnName="WholesalePrice" />
+          <ScalarProperty Name="RetailPrice" ColumnName="RetailPrice" />
+          <ScalarProperty Name="RetailSum" ColumnName="RetailSum" />
+          <ScalarProperty Name="WholesaleSum" ColumnName="WholesaleSum" />
+          <ScalarProperty Name="InWarehouseSum" ColumnName="InWarehouseSum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHA_StorageCondition">
+      <EntityTypeMapping TypeName="ZouminModel.PHA_StorageCondition">
+        <MappingFragment StoreEntitySet="PHA_StorageCondition">
+          <ScalarProperty Name="StorageConditionID" ColumnName="StorageConditionID" />
+          <ScalarProperty Name="StorageConditionName" ColumnName="StorageConditionName" />
+          <ScalarProperty Name="PinyinCode" ColumnName="PinyinCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSS_ExWarehouse">
+      <EntityTypeMapping TypeName="ZouminModel.PSS_ExWarehouse">
+        <MappingFragment StoreEntitySet="PSS_ExWarehouse">
+          <ScalarProperty Name="EWID" ColumnName="EWID" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="EWDate" ColumnName="EWDate" />
+          <ScalarProperty Name="OperateNo" ColumnName="OperateNo" />
+          <ScalarProperty Name="OperateDate" ColumnName="OperateDate" />
+          <ScalarProperty Name="IsEW" ColumnName="IsEW" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSS_ExWarehouseDetail">
+      <EntityTypeMapping TypeName="ZouminModel.PSS_ExWarehouseDetail">
+        <MappingFragment StoreEntitySet="PSS_ExWarehouseDetail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ExWarehouseNum" ColumnName="ExWarehouseNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSS_ExWarehouseMode">
+      <EntityTypeMapping TypeName="ZouminModel.PSS_ExWarehouseMode">
+        <MappingFragment StoreEntitySet="PSS_ExWarehouseMode">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Way" ColumnName="Way" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSS_InWarehouse">
+      <EntityTypeMapping TypeName="ZouminModel.PSS_InWarehouse">
+        <MappingFragment StoreEntitySet="PSS_InWarehouse">
+          <ScalarProperty Name="IWID" ColumnName="IWID" />
+          <ScalarProperty Name="Receipts" ColumnName="Receipts" />
+          <ScalarProperty Name="IWRemark" ColumnName="IWRemark" />
+          <ScalarProperty Name="IsIW" ColumnName="IsIW" />
+          <ScalarProperty Name="IWDate" ColumnName="IWDate" />
+          <ScalarProperty Name="OperateNo" ColumnName="OperateNo" />
+          <ScalarProperty Name="OperateDate" ColumnName="OperateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSS_InWarehouseDetail">
+      <EntityTypeMapping TypeName="ZouminModel.PSS_InWarehouseDetail">
+        <MappingFragment StoreEntitySet="PSS_InWarehouseDetail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PhaNo" ColumnName="PhaNo" />
+          <ScalarProperty Name="PhaExpiry" ColumnName="PhaExpiry" />
+          <ScalarProperty Name="InWarehouseCount" ColumnName="InWarehouseCount" />
+          <ScalarProperty Name="InWarehousePrice" ColumnName="InWarehousePrice" />
+          <ScalarProperty Name="InWarehouseSum" ColumnName="InWarehouseSum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSS_InWarehouseMode">
+      <EntityTypeMapping TypeName="ZouminModel.PSS_InWarehouseMode">
+        <MappingFragment StoreEntitySet="PSS_InWarehouseMode">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PriceWay" ColumnName="PriceWay" />
+          <ScalarProperty Name="PriceFormula" ColumnName="PriceFormula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSS_PurchaseCompany">
+      <EntityTypeMapping TypeName="ZouminModel.PSS_PurchaseCompany">
+        <MappingFragment StoreEntitySet="PSS_PurchaseCompany">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="PinyinCode" ColumnName="PinyinCode" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="BankNo" ColumnName="BankNo" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSS_PurchasePlan">
+      <EntityTypeMapping TypeName="ZouminModel.PSS_PurchasePlan">
+        <MappingFragment StoreEntitySet="PSS_PurchasePlan">
+          <ScalarProperty Name="PurchaseNo" ColumnName="PurchaseNo" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="OperateNo" ColumnName="OperateNo" />
+          <ScalarProperty Name="OperateDate" ColumnName="OperateDate" />
+          <ScalarProperty Name="PurchaseStatus" ColumnName="PurchaseStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSS_PurchasePlanDetail">
+      <EntityTypeMapping TypeName="ZouminModel.PSS_PurchasePlanDetail">
+        <MappingFragment StoreEntitySet="PSS_PurchasePlanDetail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PurchaseNo" ColumnName="PurchaseNo" />
+          <ScalarProperty Name="PurchaseNum" ColumnName="PurchaseNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_PHA_Accounts_PSS_PurchaseCompany" TypeName="ZouminModel.FK_PHA_Accounts_PSS_PurchaseCompany" StoreEntitySet="PHA_Accounts">
+      <EndProperty Name="PSS_PurchaseCompany">
+        <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      </EndProperty>
+      <EndProperty Name="PHA_Accounts">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+        <ScalarProperty Name="OrginID" ColumnName="OrginID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="CompanyID" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_AdjustPriceDetail_PHA_AdjustPrice" TypeName="ZouminModel.FK_PHA_AdjustPriceDetail_PHA_AdjustPrice" StoreEntitySet="PHA_AdjustPriceDetail">
+      <EndProperty Name="PHA_AdjustPrice">
+        <ScalarProperty Name="APCode" ColumnName="APCode" />
+      </EndProperty>
+      <EndProperty Name="PHA_AdjustPriceDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="APCode" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_AdjustPriceDetail_PHA_BaseInfo" TypeName="ZouminModel.FK_PHA_AdjustPriceDetail_PHA_BaseInfo" StoreEntitySet="PHA_AdjustPriceDetail">
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <EndProperty Name="PHA_AdjustPriceDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="PhaCode" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_AdjustPriceDetail_PHA_Orgin" TypeName="ZouminModel.FK_PHA_AdjustPriceDetail_PHA_Orgin" StoreEntitySet="PHA_AdjustPriceDetail">
+      <EndProperty Name="PHA_Orgin">
+        <ScalarProperty Name="OrginID" ColumnName="OrginID" />
+      </EndProperty>
+      <EndProperty Name="PHA_AdjustPriceDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="OrginID" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_BaseInfo_PHA_DispenseWay" TypeName="ZouminModel.FK_PHA_BaseInfo_PHA_DispenseWay" StoreEntitySet="PHA_BaseInfo">
+      <EndProperty Name="PHA_DispenseWay">
+        <ScalarProperty Name="DispenseWayID" ColumnName="DispenseWay" />
+      </EndProperty>
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="DispenseWay" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_BaseInfo_PHA_DosageForm" TypeName="ZouminModel.FK_PHA_BaseInfo_PHA_DosageForm" StoreEntitySet="PHA_BaseInfo">
+      <EndProperty Name="PHA_DosageForm">
+        <ScalarProperty Name="DosageID" ColumnName="DosageForm" />
+      </EndProperty>
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="DosageForm" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_BaseInfo_PHA_PhaAttr" TypeName="ZouminModel.FK_PHA_BaseInfo_PHA_PhaAttr" StoreEntitySet="PHA_BaseInfo">
+      <EndProperty Name="PHA_PhaAttr">
+        <ScalarProperty Name="PhaAttrID" ColumnName="PhaAttr" />
+      </EndProperty>
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="PhaAttr" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_BaseInfo_PHA_Repository" TypeName="ZouminModel.FK_PHA_BaseInfo_PHA_Repository" StoreEntitySet="PHA_BaseInfo">
+      <EndProperty Name="PHA_Repository">
+        <ScalarProperty Name="RepoID" ColumnName="Repo" />
+      </EndProperty>
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="Repo" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_BaseInfo_PHA_StorageCondition" TypeName="ZouminModel.FK_PHA_BaseInfo_PHA_StorageCondition" StoreEntitySet="PHA_BaseInfo">
+      <EndProperty Name="PHA_StorageCondition">
+        <ScalarProperty Name="StorageConditionID" ColumnName="StorageCondition" />
+      </EndProperty>
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="StorageCondition" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_StockDetail_PHA_BaseInfo" TypeName="ZouminModel.FK_PHA_StockDetail_PHA_BaseInfo" StoreEntitySet="PHA_StockDetail">
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <EndProperty Name="PHA_StockDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="PhaCode" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_ExWarehouseDetail_PHA_BaseInfo" TypeName="ZouminModel.FK_PSS_ExWarehouseDetail_PHA_BaseInfo" StoreEntitySet="PSS_ExWarehouseDetail">
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <EndProperty Name="PSS_ExWarehouseDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="PhaCode" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_InWarehouseDetail_PHA_BaseInfo" TypeName="ZouminModel.FK_PSS_InWarehouseDetail_PHA_BaseInfo" StoreEntitySet="PSS_InWarehouseDetail">
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <EndProperty Name="PSS_InWarehouseDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="PhaCode" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_PurchasePlanDetail_PHA_BaseInfo" TypeName="ZouminModel.FK_PSS_PurchasePlanDetail_PHA_BaseInfo" StoreEntitySet="PSS_PurchasePlanDetail">
+      <EndProperty Name="PHA_BaseInfo">
+        <ScalarProperty Name="PhaCode" ColumnName="PhaCode" />
+      </EndProperty>
+      <EndProperty Name="PSS_PurchasePlanDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="PhaCode" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PHA_StockDetail_PHA_Orgin" TypeName="ZouminModel.FK_PHA_StockDetail_PHA_Orgin" StoreEntitySet="PHA_StockDetail">
+      <EndProperty Name="PHA_Orgin">
+        <ScalarProperty Name="OrginID" ColumnName="OrginID" />
+      </EndProperty>
+      <EndProperty Name="PHA_StockDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="OrginID" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_ExWarehouseDetail_PHA_Orgin" TypeName="ZouminModel.FK_PSS_ExWarehouseDetail_PHA_Orgin" StoreEntitySet="PSS_ExWarehouseDetail">
+      <EndProperty Name="PHA_Orgin">
+        <ScalarProperty Name="OrginID" ColumnName="OrginID" />
+      </EndProperty>
+      <EndProperty Name="PSS_ExWarehouseDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="OrginID" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_InWarehouseDetail_PHA_Orgin" TypeName="ZouminModel.FK_PSS_InWarehouseDetail_PHA_Orgin" StoreEntitySet="PSS_InWarehouseDetail">
+      <EndProperty Name="PHA_Orgin">
+        <ScalarProperty Name="OrginID" ColumnName="OrginID" />
+      </EndProperty>
+      <EndProperty Name="PSS_InWarehouseDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="OrginID" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_PurchasePlanDetail_PHA_Orgin" TypeName="ZouminModel.FK_PSS_PurchasePlanDetail_PHA_Orgin" StoreEntitySet="PSS_PurchasePlanDetail">
+      <EndProperty Name="PHA_Orgin">
+        <ScalarProperty Name="OrginID" ColumnName="OrginID" />
+      </EndProperty>
+      <EndProperty Name="PSS_PurchasePlanDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="OrginID" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_ExWarehouse_PSS_ExWarehouseMode" TypeName="ZouminModel.FK_PSS_ExWarehouse_PSS_ExWarehouseMode" StoreEntitySet="PSS_ExWarehouse">
+      <EndProperty Name="PSS_ExWarehouseMode">
+        <ScalarProperty Name="ID" ColumnName="EWWay" />
+      </EndProperty>
+      <EndProperty Name="PSS_ExWarehouse">
+        <ScalarProperty Name="EWID" ColumnName="EWID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="EWWay" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouse" TypeName="ZouminModel.FK_PSS_ExWarehouseDetail_PSS_ExWarehouse" StoreEntitySet="PSS_ExWarehouseDetail">
+      <EndProperty Name="PSS_ExWarehouse">
+        <ScalarProperty Name="EWID" ColumnName="EWID" />
+      </EndProperty>
+      <EndProperty Name="PSS_ExWarehouseDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="EWID" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode" TypeName="ZouminModel.FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode" StoreEntitySet="PSS_ExWarehouseDetail">
+      <EndProperty Name="PSS_ExWarehouseMode">
+        <ScalarProperty Name="ID" ColumnName="EWWay" />
+      </EndProperty>
+      <EndProperty Name="PSS_ExWarehouseDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="EWWay" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_InWarehouse_PSS_InWarehouse" TypeName="ZouminModel.FK_PSS_InWarehouse_PSS_InWarehouse" StoreEntitySet="PSS_InWarehouse">
+      <EndProperty Name="PSS_InWarehouseMode">
+        <ScalarProperty Name="ID" ColumnName="IWWay" />
+      </EndProperty>
+      <EndProperty Name="PSS_InWarehouse">
+        <ScalarProperty Name="IWID" ColumnName="IWID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="IWWay" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_InWarehouse_PSS_PurchaseCompany" TypeName="ZouminModel.FK_PSS_InWarehouse_PSS_PurchaseCompany" StoreEntitySet="PSS_InWarehouse">
+      <EndProperty Name="PSS_PurchaseCompany">
+        <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      </EndProperty>
+      <EndProperty Name="PSS_InWarehouse">
+        <ScalarProperty Name="IWID" ColumnName="IWID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="CompanyID" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_InWarehouseDetail_PSS_InWarehouse" TypeName="ZouminModel.FK_PSS_InWarehouseDetail_PSS_InWarehouse" StoreEntitySet="PSS_InWarehouseDetail">
+      <EndProperty Name="PSS_InWarehouse">
+        <ScalarProperty Name="IWID" ColumnName="IWID" />
+      </EndProperty>
+      <EndProperty Name="PSS_InWarehouseDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="IWID" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail" TypeName="ZouminModel.FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail" StoreEntitySet="PSS_InWarehouseDetail">
+      <EndProperty Name="PSS_InWarehouseMode">
+        <ScalarProperty Name="ID" ColumnName="IWWay" />
+      </EndProperty>
+      <EndProperty Name="PSS_InWarehouseDetail">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="IWWay" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

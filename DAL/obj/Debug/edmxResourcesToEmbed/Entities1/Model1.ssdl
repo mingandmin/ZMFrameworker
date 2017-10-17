@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlogAppModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BlogAppModelStoreContainer">
+    <EntitySet Name="Blog" EntityType="BlogAppModel.Store.Blog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Category" EntityType="BlogAppModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comment" EntityType="BlogAppModel.Store.Comment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="BlogAppModel.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleUser" EntityType="BlogAppModel.Store.RoleUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="BlogAppModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_dbo_Blogs_dbo_Categories_CategoryId" Association="BlogAppModel.Store.FK_dbo_Blogs_dbo_Categories_CategoryId">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Blogs_dbo_Users_User_Id" Association="BlogAppModel.Store.FK_dbo_Blogs_dbo_Users_User_Id">
+      <End Role="User" EntitySet="User" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Comments_dbo_Blogs_BlogId" Association="BlogAppModel.Store.FK_dbo_Comments_dbo_Blogs_BlogId">
+      <End Role="Blog" EntitySet="Blog" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Comments_dbo_Users_User_Id" Association="BlogAppModel.Store.FK_dbo_Comments_dbo_Users_User_Id">
+      <End Role="User" EntitySet="User" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RoleUsers_dbo_Roles_Role_Id" Association="BlogAppModel.Store.FK_dbo_RoleUsers_dbo_Roles_Role_Id">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleUser" EntitySet="RoleUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_RoleUsers_dbo_Users_User_Id" Association="BlogAppModel.Store.FK_dbo_RoleUsers_dbo_Users_User_Id">
+      <End Role="User" EntitySet="User" />
+      <End Role="RoleUser" EntitySet="RoleUser" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Body" Type="nvarchar(max)" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+    <Property Name="BlogId" Type="int" />
+    <Property Name="PosterId" Type="int" />
+    <Property Name="User_Id" Type="int" />
+    <Property Name="qwe" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="RoleUser">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_dbo_Blogs_dbo_Categories_CategoryId">
+    <End Role="Category" Type="BlogAppModel.Store.Category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Blog" Type="BlogAppModel.Store.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Blogs_dbo_Users_User_Id">
+    <End Role="User" Type="BlogAppModel.Store.User" Multiplicity="0..1" />
+    <End Role="Blog" Type="BlogAppModel.Store.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Comments_dbo_Blogs_BlogId">
+    <End Role="Blog" Type="BlogAppModel.Store.Blog" Multiplicity="0..1" />
+    <End Role="Comment" Type="BlogAppModel.Store.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="BlogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Comments_dbo_Users_User_Id">
+    <End Role="User" Type="BlogAppModel.Store.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="BlogAppModel.Store.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RoleUsers_dbo_Roles_Role_Id">
+    <End Role="Role" Type="BlogAppModel.Store.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RoleUser" Type="BlogAppModel.Store.RoleUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleUser">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_RoleUsers_dbo_Users_User_Id">
+    <End Role="User" Type="BlogAppModel.Store.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RoleUser" Type="BlogAppModel.Store.RoleUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleUser">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

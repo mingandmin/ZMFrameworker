@@ -1,0 +1,9 @@
+D:\学习\11\EF\DAL\DAL\bin\Debug\DAL.dll.config
+D:\学习\11\EF\DAL\DAL\bin\Debug\DAL.dll
+D:\学习\11\EF\DAL\DAL\bin\Debug\DAL.pdb
+D:\学习\11\EF\DAL\DAL\bin\Debug\EntityFramework.dll
+D:\学习\11\EF\DAL\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\学习\11\EF\DAL\DAL\bin\Debug\EntityFramework.xml
+D:\学习\11\EF\DAL\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\学习\11\EF\DAL\DAL\obj\Debug\DAL.dll
+D:\学习\11\EF\DAL\DAL\obj\Debug\DAL.pdb

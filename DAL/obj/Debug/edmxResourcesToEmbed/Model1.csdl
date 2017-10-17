@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZouminModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="COM_User">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PHA_Accounts">
+    <Key>
+      <PropertyRef Name="PhaCode" />
+      <PropertyRef Name="OrginID" />
+    </Key>
+    <Property Name="PhaCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrginID" Type="Int32" Nullable="false" />
+    <Property Name="Stock" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InWarehousePrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RetailPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WholesalePrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InWarehouseSum" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RetailSum" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WholesaleSum" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="PHA_Orgin" Relationship="Self.FK_PHA_Accounts_PHA_Orgin" FromRole="PHA_Accounts" ToRole="PHA_Orgin" />
+    <NavigationProperty Name="PSS_PurchaseCompany" Relationship="Self.FK_PHA_Accounts_PSS_PurchaseCompany" FromRole="PHA_Accounts" ToRole="PSS_PurchaseCompany" />
+  </EntityType>
+  <EntityType Name="PHA_AdjustPrice">
+    <Key>
+      <PropertyRef Name="APCode" />
+    </Key>
+    <Property Name="APCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APWay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApDate" Type="DateTime" Precision="3" />
+    <Property Name="APNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ExecDate" Type="DateTime" Precision="3" />
+    <Property Name="ExecNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PHA_AdjustPriceDetail" Relationship="Self.FK_PHA_AdjustPriceDetail_PHA_AdjustPrice" FromRole="PHA_AdjustPrice" ToRole="PHA_AdjustPriceDetail" />
+  </EntityType>
+  <EntityType Name="PHA_AdjustPriceDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="APWay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NewRetailPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OldRetailPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NewWholesalePrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OldWholesalePrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RetailFloat" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WholesaleFloat" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="PHA_AdjustPrice" Relationship="Self.FK_PHA_AdjustPriceDetail_PHA_AdjustPrice" FromRole="PHA_AdjustPriceDetail" ToRole="PHA_AdjustPrice" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PHA_AdjustPriceDetail_PHA_BaseInfo" FromRole="PHA_AdjustPriceDetail" ToRole="PHA_BaseInfo" />
+    <NavigationProperty Name="PHA_Orgin" Relationship="Self.FK_PHA_AdjustPriceDetail_PHA_Orgin" FromRole="PHA_AdjustPriceDetail" ToRole="PHA_Orgin" />
+  </EntityType>
+  <EntityType Name="PHA_BaseInfo">
+    <Key>
+      <PropertyRef Name="PhaCode" />
+    </Key>
+    <Property Name="PhaCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CommonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Spec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsSpecial" Type="Int32" />
+    <Property Name="PinyinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WubiCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsAntibiotic" Type="Int32" />
+    <Property Name="IsEmergency" Type="Int32" />
+    <Property Name="IsValid" Type="Int32" />
+    <Property Name="MinUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PharmacySpec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PharmacyUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PharmacyPack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MinPack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WardSpec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WardUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WardPack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHA_AdjustPriceDetail" Relationship="Self.FK_PHA_AdjustPriceDetail_PHA_BaseInfo" FromRole="PHA_BaseInfo" ToRole="PHA_AdjustPriceDetail" />
+    <NavigationProperty Name="PHA_DispenseWay" Relationship="Self.FK_PHA_BaseInfo_PHA_DispenseWay" FromRole="PHA_BaseInfo" ToRole="PHA_DispenseWay" />
+    <NavigationProperty Name="PHA_DosageForm" Relationship="Self.FK_PHA_BaseInfo_PHA_DosageForm" FromRole="PHA_BaseInfo" ToRole="PHA_DosageForm" />
+    <NavigationProperty Name="PHA_PhaAttr" Relationship="Self.FK_PHA_BaseInfo_PHA_PhaAttr" FromRole="PHA_BaseInfo" ToRole="PHA_PhaAttr" />
+    <NavigationProperty Name="PHA_Repository" Relationship="Self.FK_PHA_BaseInfo_PHA_Repository" FromRole="PHA_BaseInfo" ToRole="PHA_Repository" />
+    <NavigationProperty Name="PHA_StorageCondition" Relationship="Self.FK_PHA_BaseInfo_PHA_StorageCondition" FromRole="PHA_BaseInfo" ToRole="PHA_StorageCondition" />
+    <NavigationProperty Name="PHA_StockDetail" Relationship="Self.FK_PHA_StockDetail_PHA_BaseInfo" FromRole="PHA_BaseInfo" ToRole="PHA_StockDetail" />
+    <NavigationProperty Name="PSS_ExWarehouseDetail" Relationship="Self.FK_PSS_ExWarehouseDetail_PHA_BaseInfo" FromRole="PHA_BaseInfo" ToRole="PSS_ExWarehouseDetail" />
+    <NavigationProperty Name="PSS_InWarehouseDetail" Relationship="Self.FK_PSS_InWarehouseDetail_PHA_BaseInfo" FromRole="PHA_BaseInfo" ToRole="PSS_InWarehouseDetail" />
+    <NavigationProperty Name="PSS_PurchasePlanDetail" Relationship="Self.FK_PSS_PurchasePlanDetail_PHA_BaseInfo" FromRole="PHA_BaseInfo" ToRole="PSS_PurchasePlanDetail" />
+  </EntityType>
+  <EntityType Name="PHA_DispenseWay">
+    <Key>
+      <PropertyRef Name="DispenseWayID" />
+    </Key>
+    <Property Name="DispenseWayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DispenseWayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PinyinCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PHA_BaseInfo_PHA_DispenseWay" FromRole="PHA_DispenseWay" ToRole="PHA_BaseInfo" />
+  </EntityType>
+  <EntityType Name="PHA_DosageForm">
+    <Key>
+      <PropertyRef Name="DosageID" />
+    </Key>
+    <Property Name="DosageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DosageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PinyinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PHA_BaseInfo_PHA_DosageForm" FromRole="PHA_DosageForm" ToRole="PHA_BaseInfo" />
+  </EntityType>
+  <EntityType Name="PHA_Orgin">
+    <Key>
+      <PropertyRef Name="OrginID" />
+    </Key>
+    <Property Name="OrginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PinyinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHA_Accounts" Relationship="Self.FK_PHA_Accounts_PHA_Orgin" FromRole="PHA_Orgin" ToRole="PHA_Accounts" />
+    <NavigationProperty Name="PHA_AdjustPriceDetail" Relationship="Self.FK_PHA_AdjustPriceDetail_PHA_Orgin" FromRole="PHA_Orgin" ToRole="PHA_AdjustPriceDetail" />
+    <NavigationProperty Name="PHA_StockDetail" Relationship="Self.FK_PHA_StockDetail_PHA_Orgin" FromRole="PHA_Orgin" ToRole="PHA_StockDetail" />
+    <NavigationProperty Name="PSS_ExWarehouseDetail" Relationship="Self.FK_PSS_ExWarehouseDetail_PHA_Orgin" FromRole="PHA_Orgin" ToRole="PSS_ExWarehouseDetail" />
+    <NavigationProperty Name="PSS_InWarehouseDetail" Relationship="Self.FK_PSS_InWarehouseDetail_PHA_Orgin" FromRole="PHA_Orgin" ToRole="PSS_InWarehouseDetail" />
+    <NavigationProperty Name="PSS_PurchasePlanDetail" Relationship="Self.FK_PSS_PurchasePlanDetail_PHA_Orgin" FromRole="PHA_Orgin" ToRole="PSS_PurchasePlanDetail" />
+  </EntityType>
+  <EntityType Name="PHA_PhaAttr">
+    <Key>
+      <PropertyRef Name="PhaAttrID" />
+    </Key>
+    <Property Name="PhaAttrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhaAttrName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PHA_BaseInfo_PHA_PhaAttr" FromRole="PHA_PhaAttr" ToRole="PHA_BaseInfo" />
+  </EntityType>
+  <EntityType Name="PHA_Repository">
+    <Key>
+      <PropertyRef Name="RepoID" />
+    </Key>
+    <Property Name="RepoID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RepoName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhaNum" Type="Int32" />
+    <Property Name="IsValid" Type="Int32" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PHA_BaseInfo_PHA_Repository" FromRole="PHA_Repository" ToRole="PHA_BaseInfo" />
+  </EntityType>
+  <EntityType Name="PHA_StockDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LotNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Property" Type="Int32" />
+    <Property Name="InWarehousePrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WholesalePrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RetailPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RetailSum" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WholesaleSum" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InWarehouseSum" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PHA_StockDetail_PHA_BaseInfo" FromRole="PHA_StockDetail" ToRole="PHA_BaseInfo" />
+    <NavigationProperty Name="PHA_Orgin" Relationship="Self.FK_PHA_StockDetail_PHA_Orgin" FromRole="PHA_StockDetail" ToRole="PHA_Orgin" />
+  </EntityType>
+  <EntityType Name="PHA_StorageCondition">
+    <Key>
+      <PropertyRef Name="StorageConditionID" />
+    </Key>
+    <Property Name="StorageConditionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StorageConditionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PinyinCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PHA_BaseInfo_PHA_StorageCondition" FromRole="PHA_StorageCondition" ToRole="PHA_BaseInfo" />
+  </EntityType>
+  <EntityType Name="PSS_ExWarehouse">
+    <Key>
+      <PropertyRef Name="EWID" />
+    </Key>
+    <Property Name="EWID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EWDate" Type="DateTime" Precision="3" />
+    <Property Name="OperateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OperateDate" Type="DateTime" Precision="3" />
+    <Property Name="IsEW" Type="Int32" />
+    <NavigationProperty Name="PSS_ExWarehouseMode" Relationship="Self.FK_PSS_ExWarehouse_PSS_ExWarehouseMode" FromRole="PSS_ExWarehouse" ToRole="PSS_ExWarehouseMode" />
+    <NavigationProperty Name="PSS_ExWarehouseDetail" Relationship="Self.FK_PSS_ExWarehouseDetail_PSS_ExWarehouse" FromRole="PSS_ExWarehouse" ToRole="PSS_ExWarehouseDetail" />
+  </EntityType>
+  <EntityType Name="PSS_ExWarehouseDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExWarehouseNum" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PSS_ExWarehouseDetail_PHA_BaseInfo" FromRole="PSS_ExWarehouseDetail" ToRole="PHA_BaseInfo" />
+    <NavigationProperty Name="PHA_Orgin" Relationship="Self.FK_PSS_ExWarehouseDetail_PHA_Orgin" FromRole="PSS_ExWarehouseDetail" ToRole="PHA_Orgin" />
+    <NavigationProperty Name="PSS_ExWarehouse" Relationship="Self.FK_PSS_ExWarehouseDetail_PSS_ExWarehouse" FromRole="PSS_ExWarehouseDetail" ToRole="PSS_ExWarehouse" />
+    <NavigationProperty Name="PSS_ExWarehouseMode" Relationship="Self.FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode" FromRole="PSS_ExWarehouseDetail" ToRole="PSS_ExWarehouseMode" />
+  </EntityType>
+  <EntityType Name="PSS_ExWarehouseMode">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Way" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PSS_ExWarehouse" Relationship="Self.FK_PSS_ExWarehouse_PSS_ExWarehouseMode" FromRole="PSS_ExWarehouseMode" ToRole="PSS_ExWarehouse" />
+    <NavigationProperty Name="PSS_ExWarehouseDetail" Relationship="Self.FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode" FromRole="PSS_ExWarehouseMode" ToRole="PSS_ExWarehouseDetail" />
+  </EntityType>
+  <EntityType Name="PSS_InWarehouse">
+    <Key>
+      <PropertyRef Name="IWID" />
+    </Key>
+    <Property Name="IWID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Receipts" Type="Int32" />
+    <Property Name="IWRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsIW" Type="Int32" />
+    <Property Name="IWDate" Type="DateTime" Precision="3" />
+    <Property Name="OperateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OperateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PSS_InWarehouseMode" Relationship="Self.FK_PSS_InWarehouse_PSS_InWarehouse" FromRole="PSS_InWarehouse" ToRole="PSS_InWarehouseMode" />
+    <NavigationProperty Name="PSS_PurchaseCompany" Relationship="Self.FK_PSS_InWarehouse_PSS_PurchaseCompany" FromRole="PSS_InWarehouse" ToRole="PSS_PurchaseCompany" />
+    <NavigationProperty Name="PSS_InWarehouseDetail" Relationship="Self.FK_PSS_InWarehouseDetail_PSS_InWarehouse" FromRole="PSS_InWarehouse" ToRole="PSS_InWarehouseDetail" />
+  </EntityType>
+  <EntityType Name="PSS_InWarehouseDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhaNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhaExpiry" Type="DateTime" Precision="3" />
+    <Property Name="InWarehouseCount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InWarehousePrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InWarehouseSum" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PSS_InWarehouseDetail_PHA_BaseInfo" FromRole="PSS_InWarehouseDetail" ToRole="PHA_BaseInfo" />
+    <NavigationProperty Name="PHA_Orgin" Relationship="Self.FK_PSS_InWarehouseDetail_PHA_Orgin" FromRole="PSS_InWarehouseDetail" ToRole="PHA_Orgin" />
+    <NavigationProperty Name="PSS_InWarehouse" Relationship="Self.FK_PSS_InWarehouseDetail_PSS_InWarehouse" FromRole="PSS_InWarehouseDetail" ToRole="PSS_InWarehouse" />
+    <NavigationProperty Name="PSS_InWarehouseMode" Relationship="Self.FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail" FromRole="PSS_InWarehouseDetail" ToRole="PSS_InWarehouseMode" />
+  </EntityType>
+  <EntityType Name="PSS_InWarehouseMode">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="PriceWay" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="PriceFormula" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="PSS_InWarehouse" Relationship="Self.FK_PSS_InWarehouse_PSS_InWarehouse" FromRole="PSS_InWarehouseMode" ToRole="PSS_InWarehouse" />
+    <NavigationProperty Name="PSS_InWarehouseDetail" Relationship="Self.FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail" FromRole="PSS_InWarehouseMode" ToRole="PSS_InWarehouseDetail" />
+  </EntityType>
+  <EntityType Name="PSS_PurchaseCompany">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PinyinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHA_Accounts" Relationship="Self.FK_PHA_Accounts_PSS_PurchaseCompany" FromRole="PSS_PurchaseCompany" ToRole="PHA_Accounts" />
+    <NavigationProperty Name="PSS_InWarehouse" Relationship="Self.FK_PSS_InWarehouse_PSS_PurchaseCompany" FromRole="PSS_PurchaseCompany" ToRole="PSS_InWarehouse" />
+  </EntityType>
+  <EntityType Name="PSS_PurchasePlan">
+    <Key>
+      <PropertyRef Name="PurchaseNo" />
+    </Key>
+    <Property Name="PurchaseNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
+    <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OperateDate" Type="DateTime" Precision="3" />
+    <Property Name="PurchaseStatus" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PSS_PurchasePlanDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PurchaseNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaseNum" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="PHA_BaseInfo" Relationship="Self.FK_PSS_PurchasePlanDetail_PHA_BaseInfo" FromRole="PSS_PurchasePlanDetail" ToRole="PHA_BaseInfo" />
+    <NavigationProperty Name="PHA_Orgin" Relationship="Self.FK_PSS_PurchasePlanDetail_PHA_Orgin" FromRole="PSS_PurchasePlanDetail" ToRole="PHA_Orgin" />
+  </EntityType>
+  <Association Name="FK_PHA_Accounts_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="1" />
+    <End Role="PHA_Accounts" Type="Self.PHA_Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHA_Orgin">
+        <PropertyRef Name="OrginID" />
+      </Principal>
+      <Dependent Role="PHA_Accounts">
+        <PropertyRef Name="OrginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHA_Accounts_PSS_PurchaseCompany">
+    <End Role="PSS_PurchaseCompany" Type="Self.PSS_PurchaseCompany" Multiplicity="0..1" />
+    <End Role="PHA_Accounts" Type="Self.PHA_Accounts" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_AdjustPriceDetail_PHA_AdjustPrice">
+    <End Role="PHA_AdjustPrice" Type="Self.PHA_AdjustPrice" Multiplicity="0..1" />
+    <End Role="PHA_AdjustPriceDetail" Type="Self.PHA_AdjustPriceDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_AdjustPriceDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PHA_AdjustPriceDetail" Type="Self.PHA_AdjustPriceDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_AdjustPriceDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PHA_AdjustPriceDetail" Type="Self.PHA_AdjustPriceDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_DispenseWay">
+    <End Role="PHA_DispenseWay" Type="Self.PHA_DispenseWay" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_DosageForm">
+    <End Role="PHA_DosageForm" Type="Self.PHA_DosageForm" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_PhaAttr">
+    <End Role="PHA_PhaAttr" Type="Self.PHA_PhaAttr" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_Repository">
+    <End Role="PHA_Repository" Type="Self.PHA_Repository" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_BaseInfo_PHA_StorageCondition">
+    <End Role="PHA_StorageCondition" Type="Self.PHA_StorageCondition" Multiplicity="0..1" />
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_StockDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PHA_StockDetail" Type="Self.PHA_StockDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_ExWarehouseDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouseDetail" Type="Self.PSS_ExWarehouseDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_InWarehouseDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouseDetail" Type="Self.PSS_InWarehouseDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_PurchasePlanDetail_PHA_BaseInfo">
+    <End Role="PHA_BaseInfo" Type="Self.PHA_BaseInfo" Multiplicity="0..1" />
+    <End Role="PSS_PurchasePlanDetail" Type="Self.PSS_PurchasePlanDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PHA_StockDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PHA_StockDetail" Type="Self.PHA_StockDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_ExWarehouseDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouseDetail" Type="Self.PSS_ExWarehouseDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_InWarehouseDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouseDetail" Type="Self.PSS_InWarehouseDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_PurchasePlanDetail_PHA_Orgin">
+    <End Role="PHA_Orgin" Type="Self.PHA_Orgin" Multiplicity="0..1" />
+    <End Role="PSS_PurchasePlanDetail" Type="Self.PSS_PurchasePlanDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_ExWarehouse_PSS_ExWarehouseMode">
+    <End Role="PSS_ExWarehouseMode" Type="Self.PSS_ExWarehouseMode" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouse" Type="Self.PSS_ExWarehouse" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouse">
+    <End Role="PSS_ExWarehouse" Type="Self.PSS_ExWarehouse" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouseDetail" Type="Self.PSS_ExWarehouseDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode">
+    <End Role="PSS_ExWarehouseMode" Type="Self.PSS_ExWarehouseMode" Multiplicity="0..1" />
+    <End Role="PSS_ExWarehouseDetail" Type="Self.PSS_ExWarehouseDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_InWarehouse_PSS_InWarehouse">
+    <End Role="PSS_InWarehouseMode" Type="Self.PSS_InWarehouseMode" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouse" Type="Self.PSS_InWarehouse" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_InWarehouse_PSS_PurchaseCompany">
+    <End Role="PSS_PurchaseCompany" Type="Self.PSS_PurchaseCompany" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouse" Type="Self.PSS_InWarehouse" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_InWarehouseDetail_PSS_InWarehouse">
+    <End Role="PSS_InWarehouse" Type="Self.PSS_InWarehouse" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouseDetail" Type="Self.PSS_InWarehouseDetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail">
+    <End Role="PSS_InWarehouseMode" Type="Self.PSS_InWarehouseMode" Multiplicity="0..1" />
+    <End Role="PSS_InWarehouseDetail" Type="Self.PSS_InWarehouseDetail" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ZouminEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="COM_User" EntityType="Self.COM_User" />
+    <EntitySet Name="PHA_Accounts" EntityType="Self.PHA_Accounts" />
+    <EntitySet Name="PHA_AdjustPrice" EntityType="Self.PHA_AdjustPrice" />
+    <EntitySet Name="PHA_AdjustPriceDetail" EntityType="Self.PHA_AdjustPriceDetail" />
+    <EntitySet Name="PHA_BaseInfo" EntityType="Self.PHA_BaseInfo" />
+    <EntitySet Name="PHA_DispenseWay" EntityType="Self.PHA_DispenseWay" />
+    <EntitySet Name="PHA_DosageForm" EntityType="Self.PHA_DosageForm" />
+    <EntitySet Name="PHA_Orgin" EntityType="Self.PHA_Orgin" />
+    <EntitySet Name="PHA_PhaAttr" EntityType="Self.PHA_PhaAttr" />
+    <EntitySet Name="PHA_Repository" EntityType="Self.PHA_Repository" />
+    <EntitySet Name="PHA_StockDetail" EntityType="Self.PHA_StockDetail" />
+    <EntitySet Name="PHA_StorageCondition" EntityType="Self.PHA_StorageCondition" />
+    <EntitySet Name="PSS_ExWarehouse" EntityType="Self.PSS_ExWarehouse" />
+    <EntitySet Name="PSS_ExWarehouseDetail" EntityType="Self.PSS_ExWarehouseDetail" />
+    <EntitySet Name="PSS_ExWarehouseMode" EntityType="Self.PSS_ExWarehouseMode" />
+    <EntitySet Name="PSS_InWarehouse" EntityType="Self.PSS_InWarehouse" />
+    <EntitySet Name="PSS_InWarehouseDetail" EntityType="Self.PSS_InWarehouseDetail" />
+    <EntitySet Name="PSS_InWarehouseMode" EntityType="Self.PSS_InWarehouseMode" />
+    <EntitySet Name="PSS_PurchaseCompany" EntityType="Self.PSS_PurchaseCompany" />
+    <EntitySet Name="PSS_PurchasePlan" EntityType="Self.PSS_PurchasePlan" />
+    <EntitySet Name="PSS_PurchasePlanDetail" EntityType="Self.PSS_PurchasePlanDetail" />
+    <AssociationSet Name="FK_PHA_Accounts_PHA_Orgin" Association="Self.FK_PHA_Accounts_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PHA_Accounts" EntitySet="PHA_Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_Accounts_PSS_PurchaseCompany" Association="Self.FK_PHA_Accounts_PSS_PurchaseCompany">
+      <End Role="PSS_PurchaseCompany" EntitySet="PSS_PurchaseCompany" />
+      <End Role="PHA_Accounts" EntitySet="PHA_Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_AdjustPriceDetail_PHA_AdjustPrice" Association="Self.FK_PHA_AdjustPriceDetail_PHA_AdjustPrice">
+      <End Role="PHA_AdjustPrice" EntitySet="PHA_AdjustPrice" />
+      <End Role="PHA_AdjustPriceDetail" EntitySet="PHA_AdjustPriceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_AdjustPriceDetail_PHA_BaseInfo" Association="Self.FK_PHA_AdjustPriceDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PHA_AdjustPriceDetail" EntitySet="PHA_AdjustPriceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_AdjustPriceDetail_PHA_Orgin" Association="Self.FK_PHA_AdjustPriceDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PHA_AdjustPriceDetail" EntitySet="PHA_AdjustPriceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_DispenseWay" Association="Self.FK_PHA_BaseInfo_PHA_DispenseWay">
+      <End Role="PHA_DispenseWay" EntitySet="PHA_DispenseWay" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_DosageForm" Association="Self.FK_PHA_BaseInfo_PHA_DosageForm">
+      <End Role="PHA_DosageForm" EntitySet="PHA_DosageForm" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_PhaAttr" Association="Self.FK_PHA_BaseInfo_PHA_PhaAttr">
+      <End Role="PHA_PhaAttr" EntitySet="PHA_PhaAttr" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_Repository" Association="Self.FK_PHA_BaseInfo_PHA_Repository">
+      <End Role="PHA_Repository" EntitySet="PHA_Repository" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_BaseInfo_PHA_StorageCondition" Association="Self.FK_PHA_BaseInfo_PHA_StorageCondition">
+      <End Role="PHA_StorageCondition" EntitySet="PHA_StorageCondition" />
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_StockDetail_PHA_BaseInfo" Association="Self.FK_PHA_StockDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PHA_StockDetail" EntitySet="PHA_StockDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouseDetail_PHA_BaseInfo" Association="Self.FK_PSS_ExWarehouseDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PSS_ExWarehouseDetail" EntitySet="PSS_ExWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouseDetail_PHA_BaseInfo" Association="Self.FK_PSS_InWarehouseDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PSS_InWarehouseDetail" EntitySet="PSS_InWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_PurchasePlanDetail_PHA_BaseInfo" Association="Self.FK_PSS_PurchasePlanDetail_PHA_BaseInfo">
+      <End Role="PHA_BaseInfo" EntitySet="PHA_BaseInfo" />
+      <End Role="PSS_PurchasePlanDetail" EntitySet="PSS_PurchasePlanDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHA_StockDetail_PHA_Orgin" Association="Self.FK_PHA_StockDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PHA_StockDetail" EntitySet="PHA_StockDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouseDetail_PHA_Orgin" Association="Self.FK_PSS_ExWarehouseDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PSS_ExWarehouseDetail" EntitySet="PSS_ExWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouseDetail_PHA_Orgin" Association="Self.FK_PSS_InWarehouseDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PSS_InWarehouseDetail" EntitySet="PSS_InWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_PurchasePlanDetail_PHA_Orgin" Association="Self.FK_PSS_PurchasePlanDetail_PHA_Orgin">
+      <End Role="PHA_Orgin" EntitySet="PHA_Orgin" />
+      <End Role="PSS_PurchasePlanDetail" EntitySet="PSS_PurchasePlanDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouse_PSS_ExWarehouseMode" Association="Self.FK_PSS_ExWarehouse_PSS_ExWarehouseMode">
+      <End Role="PSS_ExWarehouseMode" EntitySet="PSS_ExWarehouseMode" />
+      <End Role="PSS_ExWarehouse" EntitySet="PSS_ExWarehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouse" Association="Self.FK_PSS_ExWarehouseDetail_PSS_ExWarehouse">
+      <End Role="PSS_ExWarehouse" EntitySet="PSS_ExWarehouse" />
+      <End Role="PSS_ExWarehouseDetail" EntitySet="PSS_ExWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode" Association="Self.FK_PSS_ExWarehouseDetail_PSS_ExWarehouseMode">
+      <End Role="PSS_ExWarehouseMode" EntitySet="PSS_ExWarehouseMode" />
+      <End Role="PSS_ExWarehouseDetail" EntitySet="PSS_ExWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouse_PSS_InWarehouse" Association="Self.FK_PSS_InWarehouse_PSS_InWarehouse">
+      <End Role="PSS_InWarehouseMode" EntitySet="PSS_InWarehouseMode" />
+      <End Role="PSS_InWarehouse" EntitySet="PSS_InWarehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouse_PSS_PurchaseCompany" Association="Self.FK_PSS_InWarehouse_PSS_PurchaseCompany">
+      <End Role="PSS_PurchaseCompany" EntitySet="PSS_PurchaseCompany" />
+      <End Role="PSS_InWarehouse" EntitySet="PSS_InWarehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouseDetail_PSS_InWarehouse" Association="Self.FK_PSS_InWarehouseDetail_PSS_InWarehouse">
+      <End Role="PSS_InWarehouse" EntitySet="PSS_InWarehouse" />
+      <End Role="PSS_InWarehouseDetail" EntitySet="PSS_InWarehouseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail" Association="Self.FK_PSS_InWarehouseDetail_PSS_InWarehouseDetail">
+      <End Role="PSS_InWarehouseMode" EntitySet="PSS_InWarehouseMode" />
+      <End Role="PSS_InWarehouseDetail" EntitySet="PSS_InWarehouseDetail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
